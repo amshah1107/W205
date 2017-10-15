@@ -96,6 +96,51 @@ STORED AS TEXTFILE
 LOCATION '/user/w205/hospital_compare/readmissions'; 
 
 
+!echo "Creating surveys_responses table";
+DROP TABLE surveys_responses;
+CREATE TABLE surveys_responses
+(provider_id BIGINT,
+ hospital_name  STRING,
+ address STRING,
+ city STRING,
+ state STRING,
+ zip STRING,
+ county STRING,
+ comm_nurse_achievement STRING,
+ comm_nurse_improvement STRING,
+ comm_nurse_dimension_score STRING,
+ comm_doc_achievements STRING,
+ comm_doc_improvement STRING,
+ comm_doc_dimension_score STRING,
+ responsiveness_hos_staff_achievement STRING,
+ responsiveness_hos_staff_improvement STRING,
+ responsiveness_hos_staff_dimension_score STRING,
+ pain_mgmt_achievement STRING,
+ pain_mgmt_improvement STRING,
+ pain_mgmt_dimension_score STRING,
+ comm_medicines_achievement STRING,
+ comm_medicines_improvement STRING,
+ comm_medicines_dimension_score STRING,
+ cleanliness_achievement STRING,
+ cleanliness_improvement STRING,
+ cleanliness_dimension_score STRING,
+ discharge_info_achievement STRING,
+ discharge_info_improvement STRING,
+ discharge_info_dimension_score STRING,
+ overall_rating_achievement STRING,
+ overall_rating_improvement STRING,
+ overall_rating_dimension_score STRING,
+ HCAHPS_base_score STRING,
+ HCAHPS_consistency_score STRING)
+ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde' 
+WITH SERDEPROPERTIES (
+"separatorChar" = ",",
+"quoteChar"     = '"', 
+"escapeChar"    = '\\' ) 
+STORED AS TEXTFILE 
+LOCATION '/user/w205/hospital_compare/surveys_responses';
+
+1echo "Completed table loading";
 
 !echo "Records in hospital table";
 SELECT COUNT(provider_id) FROM hospitals; 
@@ -105,3 +150,5 @@ SELECT COUNT(*) FROM measures;
 SELECT COUNT(*) FROM effective_care;
 !echo "Records in readmissions table";
 SELECT COUNT(*) FROM readmissions;
+!echo "Records in surveys_responses table";
+SELECT COUNT(*) FROM surveys_responses;
