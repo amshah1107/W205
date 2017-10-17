@@ -14,7 +14,6 @@ echo "current user is " `whoami`
 echo "mkdir /user/w205/hospital_compare. delete if exists...."
 sudo -u w205 hdfs dfs -rm -f -r /user/w205/hospital_compare
 sudo -u w205 hdfs dfs -mkdir /user/w205/hospital_compare
-cd "/home/w205/github/W205/exercise_1/loading_and_modelling/data files"
 echo "current working directory is " `pwd`
 echo "Put files on the hdfs...."
 echo "put  hospitals.csv"

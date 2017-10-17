@@ -140,7 +140,7 @@ WITH SERDEPROPERTIES (
 STORED AS TEXTFILE 
 LOCATION '/user/w205/hospital_compare/surveys_responses';
 
-1echo "Completed table loading";
+!echo "Completed table loading";
 
 !echo "Records in hospital table";
 SELECT COUNT(provider_id) FROM hospitals; 
