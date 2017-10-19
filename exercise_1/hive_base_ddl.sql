@@ -1,7 +1,11 @@
+!echo "Creating database hospital_compare";
+DROP DATABASE IF EXISTS hospital_compare CASCADE;
+CREATE DATABASE hospital_compare;
+USE hospital_compare;
 !echo "Creating hospital table";
-DROP TABLE hospitals;
+DROP TABLE IF EXISTS hospitals;
 CREATE TABLE hospitals
-(provider_id BIGINT,
+(provider_id STRING,
  hospital_name STRING,
  address STRING,
  city STRING,
@@ -21,7 +25,7 @@ STORED AS TEXTFILE
 LOCATION '/user/w205/hospital_compare/hospitals'; 
 
 !echo "Creating measures table";
-DROP TABLE measures;
+DROP TABLE IF EXISTS measures;
 CREATE TABLE measures
 (measure_name STRING,
  measure_id  STRING,
@@ -39,9 +43,9 @@ LOCATION '/user/w205/hospital_compare/measures';
 
 
 !echo "Creating effective_care table";
-DROP TABLE effective_care;
+DROP TABLE IF EXISTS effective_care;
 CREATE TABLE effective_care
-(provider_id BIGINT,
+(provider_id STRING,
  hospital_name  STRING,
  address STRING,
  city STRING,
@@ -67,9 +71,9 @@ LOCATION '/user/w205/hospital_compare/effective_care';
 
 
 !echo "Creating readmissions table";
-DROP TABLE readmissions;
+DROP TABLE IF EXISTS readmissions;
 CREATE TABLE readmissions
-(provider_id BIGINT,
+(provider_id STRING,
  hospital_name  STRING,
  address STRING,
  city STRING,
@@ -97,9 +101,9 @@ LOCATION '/user/w205/hospital_compare/readmissions';
 
 
 !echo "Creating surveys_responses table";
-DROP TABLE surveys_responses;
+DROP TABLE IF EXISTS surveys_responses;
 CREATE TABLE surveys_responses
-(provider_id BIGINT,
+(provider_id STRING,
  hospital_name  STRING,
  address STRING,
  city STRING,
@@ -141,14 +145,3 @@ STORED AS TEXTFILE
 LOCATION '/user/w205/hospital_compare/surveys_responses';
 
 !echo "Completed table loading";
-
-!echo "Records in hospital table";
-SELECT COUNT(provider_id) FROM hospitals; 
-!echo "Records in measure table";
-SELECT COUNT(*) FROM measures;
-!echo "Records in effective_care table";
-SELECT COUNT(*) FROM effective_care;
-!echo "Records in readmissions table";
-SELECT COUNT(*) FROM readmissions;
-!echo "Records in surveys_responses table";
-SELECT COUNT(*) FROM surveys_responses;
