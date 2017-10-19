@@ -8,3 +8,4 @@ hive -S -v -f ./transforming/hospitals_transformed_ddl.sql
 hive -S -v -f ./transforming/readmissions_transformed_ddl.sql
 hive -S -v -f ./transforming/measures_transformed_ddl.sql
 hive -S -v -f ./transforming/effective_care_transformed_ddl.sql
+hive -S -v -f ./transforming/surveys_responses_transformed_ddl.sql
