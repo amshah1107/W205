@@ -48,26 +48,25 @@ To run the project run the main.sh script. This has been tested to run as root.
 
 # Transformations
 
-## Effective care: For this data set, we filter the Not Available, High, Low and Medium. The high, low and medium refers to the number of emergency department patients and thus it is not useful for the analysis.   
+1. Effective care: For this data set, we filter the Not Available, High, Low and Medium. The high, low and medium refers to the number of emergency department patients and thus it is not useful for the analysis.   
 
-## Hospitals: We just filter out the unwanted columns like address, city, etc. We create two tables one for Veterans hospital and another one for non veterans to study the scores in either one.    
+2. Hospitals: We just filter out the unwanted columns like address, city, etc. We create two tables one for Veterans hospital and another one for non veterans to study the scores in either one.    
 
-## patient_readd_data: This is a secondary table which joins the scores from the readmission data and the customer survey for ease of correlation calculation.   
+3. patient_readd_data: This is a secondary table which joins the scores from the readmission data and the customer survey for ease of correlation calculation.   
 
-## hospital_score_effcare: This is a secondary table to calculate and store statistics information about effective care. It calculates the min, max, average, standard deviation, variance, and sum for the scores in the effective care dataset.   
+4. hospital_score_effcare: This is a secondary table to calculate and store statistics information about effective care. It calculates the min, max, average, standard deviation, variance, and sum for the scores in the effective care dataset.   
 
-## measures_transformed_ddl.sql: In this table we just filter out EDV (Emergency Department Visits) from the Measures table.   
+5. measures_transformed_ddl.sql: In this table we just filter out EDV (Emergency Department Visits) from the Measures table.   
 
-## readmissions_transformed: In this table, we filter out information like address, city, etc and also filter outNot Available and "Number of cases too small" in the "compared_to_national" column to filter out non available data.    
+6. readmissions_transformed: In this table, we filter out information like address, city, etc and also filter outNot Available and "Number of cases too small" in the "compared_to_national" column to filter out non available data.    
 
-## hospital_score_readd: This is a secondary table to calculate and store statistics information about readmissions. It calculates the min, max, average, standard deviation, variance, and sum for the scores in the readmission data set.    
+7. hospital_score_readd: This is a secondary table to calculate and store statistics information about readmissions. It calculates the min, max, average, standard deviation, variance, and sum for the scores in the readmission data set.    
 
-## patient_effcare_data: This is a secondary table which joins the scores from the effective care data and the customer survey for ease of correlation calculation.   
+8. patient_effcare_data: This is a secondary table which joins the scores from the effective care data and the customer survey for ease of correlation calculation.   
 
-## surveys_responses_transformed: In this table, we filter out some unwanted columns from the surveys responses table and also filter out the non applicable score rows.       
+9. surveys_responses_transformed: In this table, we filter out some unwanted columns from the surveys responses table and also filter out the non applicable score rows.       
 
  
-
 
 # Analysis
 
