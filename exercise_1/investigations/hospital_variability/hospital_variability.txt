@@ -1,0 +1,44 @@
+use hospital_compare
+set hive.cli.print.header=true
+"Querying for variability in procedures between hospitals for readmission score"
+
+SELECT readmissions_transformed.measure_name, sum(score) as aggregate, avg(score) as average, 
+variance(score) AS variance, max(score) as maxscore, min(score) as minscore, 
+stddev_pop(score) as stddev
+FROM readmissions_transformed, measures_transformed
+WHERE readmissions_transformed.measure_id = measures_transformed.measure_id
+GROUP by readmissions_transformed.measure_name
+SORT BY aggregate
+LIMIT 10
+readmissions_transformed.measure_name	aggregate	average	variance	maxscore	minscore	stddev
+Death rate for CABG	3453.1999999999935	3.2546654099905687	0.6507911462964621	9.2	1.6	0.8067162737273013
+Rate of readmission after hip/knee surgery	13552.200000000003	4.87664627563872	0.3961764459478052	8.5	2.6	0.6294254887973677
+Rate of unplanned readmission for CABG	15741.700000000006	14.963593155893543	1.7620300550101937	21.0	11.4	1.3274148014129545
+Death rate for chronic obstructive pulmonary disease (COPD) patients	28292.899999999994	7.764242590559823	1.065431067384725	9.9	10.0	1.0321972037283984
+Rate of unplanned readmission for stroke patients	34760.200000000004	12.7654058024238	1.2468164622065092	9.9	10.0	1.1166093597165077
+Acute Myocardial Infarction (AMI) 30-Day Mortality Rate	35474.899999999936	14.15598563447723	1.562847252786449	9.9	10.0	1.250138893398029
+Acute Myocardial Infarction (AMI) 30-Day Readmission Rate	39205.60000000008	17.031103388357984	1.1752358807096308	20.8	13.3	1.0840829676319201
+Death rate for stroke patients	41002.89999999998	14.85074248460702	2.725172393301905	9.8	10.0	1.6508096175216285
+Heart failure (HF) 30-Day Mortality Rate	44421.60000000015	11.689894736842145	2.041708409972297	9.9	10.0	1.428883623662997
+Pneumonia (PN) 30-Day Mortality Rate	48931.29999999986	11.617117758784392	2.928147153274377	9.9	10.0	1.711182968964563
+"Querying for variability in procedures between hospitals for effective care score"
+
+SELECT effective_care_transformed.measure_name, sum(score) as aggregate, avg(score) as average, 
+variance(score) AS variance, max(score) as maxscore, min(score) as minscore, 
+stddev_pop(score) as stddev
+FROM effective_care_transformed, measures_transformed
+WHERE effective_care_transformed.measure_id = measures_transformed.measure_id
+GROUP by effective_care_transformed.measure_name
+SORT BY aggregate
+LIMIT 10
+effective_care_transformed.measure_name	aggregate	average	variance	maxscore	minscore	stddev
+Fibrinolytic Therapy Received Within 30 Minutes Of Hospital Arrival	150.0	50.0	352.6666666666667	73	27	18.7794213613377
+Median Time to Fibrinolysis	1768.0	26.0	57.20588235294118	64	15	7.563457037158417
+Fibrinolytic Therapy Received Within 30 Minutes of ED Arrival	4777.0	70.25	325.74632352941165	92	100	18.048443797995763
+Left before being seen	5449.0	1.6996257018091079	2.9468931849164655	9	0	1.7166517366421372
+Home Management Plan of Care Document	8580.0	89.375	161.7760416666667	99	100	12.71912110433212
+Incidence of potentially preventable VTE	8810.0	6.347262247838617	65.0033282395833	9	0	8.062464154313078
+Systemic Corticosteroids for Inpatient Asthma	9667.0	99.65979381443299	1.6471463492400888	99	100	1.283411995128645
+Relievers for Inpatient Asthma	9698.0	99.97938144329896	0.020193431820597303	99	100	0.14210359538237344
+Percent of newborns whose deliveries were scheduled early (1-3 weeks early), when a scheduled delivery was not medically necessary	10666.0	4.232539682539683	48.41735386747294	9	0	6.958257962124783
+Median Time to ECG	17491.0	8.333015721772272	37.32454597926683	9	0	6.109381800089665

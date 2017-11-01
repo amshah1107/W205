@@ -12,5 +12,7 @@ SELECT provider_id,
  sample,
  footnote
 FROM effective_care
-WHERE score rlike '[^0-9]'; 
-
+WHERE score not in ('Not Available')
+AND NOT (score like '%High%') 
+AND NOT (score like '%Medium')
+AND NOT (score like '%Low');
