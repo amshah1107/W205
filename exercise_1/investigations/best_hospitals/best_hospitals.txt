@@ -1,3 +1,23 @@
+Analysis:
+
+1. The hospitals are queried based on the total scores of all measures. The
+query outputs the aggregate score, average score, maxscore, minscore, and std
+deviation. 
+2. The query is done separately for effective care and for readmissions. 
+3. Interestingly, the top 10 hospitals are different for effective care and
+readmissions. 
+4. Contrary to poular belief, we found that the non veterans hospitals have a higher aggregate
+score for both effective care and readmissions.
+5. The average score for all measures were higher for the nonveterans hospital
+vs. the veterans hospital. These might due to fewer veterans hospital
+participating. 
+6. There are 129 veterans hospital in the data set and 4695 non veterans
+hospitals in the dataset.  
+
+
+The results of the queries are below.
+
+
 use hospital_compare
 set hive.cli.print.header=true
 "Querying for top 10 hospitals with best readmission score"

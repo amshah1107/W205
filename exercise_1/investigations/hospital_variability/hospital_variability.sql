@@ -7,7 +7,7 @@ stddev_pop(score) as stddev
 FROM readmissions_transformed, measures_transformed
 WHERE readmissions_transformed.measure_id = measures_transformed.measure_id
 GROUP by readmissions_transformed.measure_name
-SORT BY aggregate
+SORT BY aggregate DESC
 LIMIT 10;
 
 
@@ -18,5 +18,5 @@ stddev_pop(score) as stddev
 FROM effective_care_transformed, measures_transformed
 WHERE effective_care_transformed.measure_id = measures_transformed.measure_id
 GROUP by effective_care_transformed.measure_name
-SORT BY aggregate
+SORT BY aggregate DESC
 LIMIT 10;

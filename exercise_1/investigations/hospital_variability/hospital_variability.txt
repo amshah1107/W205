@@ -1,3 +1,9 @@
+Analysis:  
+1. In the readmission category, the heart failures, pulmonary diseases are the top two measures with the highest score.   
+2. In the effective care, the ED1 and OP 18 measures are the top two with the highest score. This is understandable as ED1 is the emergency department care and OP 18 is the mean time between Emergency department arrival and departure. The score drops significantly for the other measures.   
+3. The aggregate scores for the effective care are much much higher compared to the readmission.   
+
+
 use hospital_compare
 set hive.cli.print.header=true
 "Querying for variability in procedures between hospitals for readmission score"
@@ -8,19 +14,19 @@ stddev_pop(score) as stddev
 FROM readmissions_transformed, measures_transformed
 WHERE readmissions_transformed.measure_id = measures_transformed.measure_id
 GROUP by readmissions_transformed.measure_name
-SORT BY aggregate
+SORT BY aggregate DESC
 LIMIT 10
 readmissions_transformed.measure_name	aggregate	average	variance	maxscore	minscore	stddev
-Death rate for CABG	3453.1999999999935	3.2546654099905687	0.6507911462964621	9.2	1.6	0.8067162737273013
-Rate of readmission after hip/knee surgery	13552.200000000003	4.87664627563872	0.3961764459478052	8.5	2.6	0.6294254887973677
-Rate of unplanned readmission for CABG	15741.700000000006	14.963593155893543	1.7620300550101937	21.0	11.4	1.3274148014129545
-Death rate for chronic obstructive pulmonary disease (COPD) patients	28292.899999999994	7.764242590559823	1.065431067384725	9.9	10.0	1.0321972037283984
-Rate of unplanned readmission for stroke patients	34760.200000000004	12.7654058024238	1.2468164622065092	9.9	10.0	1.1166093597165077
-Acute Myocardial Infarction (AMI) 30-Day Mortality Rate	35474.899999999936	14.15598563447723	1.562847252786449	9.9	10.0	1.250138893398029
-Acute Myocardial Infarction (AMI) 30-Day Readmission Rate	39205.60000000008	17.031103388357984	1.1752358807096308	20.8	13.3	1.0840829676319201
-Death rate for stroke patients	41002.89999999998	14.85074248460702	2.725172393301905	9.8	10.0	1.6508096175216285
-Heart failure (HF) 30-Day Mortality Rate	44421.60000000015	11.689894736842145	2.041708409972297	9.9	10.0	1.428883623662997
+Heart failure (HF) 30-Day Readmission Rate	85686.0000000001	22.04425006431698	2.543516590928094	31.7	15.8	1.594840616152001
+Rate of unplanned readmission for chronic obstructive pulmonary disease (COPD) patients	75440.99999999968	20.263497179693708	1.6082753872469457	26.5	15.5	1.26817797932583
+Pneumonia (PN) 30-Day Readmission Rate	71718.0000000002	16.96664300922645	1.2489701122074577	21.8	13.2	1.1175733140190212
+Rate of readmission after discharge from hospital (hospital-wide)	68041.00000000006	15.23533363188537	0.7164810463252336	19.8	11.3	0.846452034273197
 Pneumonia (PN) 30-Day Mortality Rate	48931.29999999986	11.617117758784392	2.928147153274377	9.9	10.0	1.711182968964563
+Heart failure (HF) 30-Day Mortality Rate	44421.60000000015	11.689894736842145	2.041708409972297	9.9	10.0	1.428883623662997
+Death rate for stroke patients	41002.89999999998	14.85074248460702	2.725172393301905	9.8	10.0	1.6508096175216285
+Acute Myocardial Infarction (AMI) 30-Day Readmission Rate	39205.60000000008	17.031103388357984	1.1752358807096308	20.8	13.3	1.0840829676319201
+Acute Myocardial Infarction (AMI) 30-Day Mortality Rate	35474.899999999936	14.15598563447723	1.562847252786449	9.9	10.0	1.250138893398029
+Rate of unplanned readmission for stroke patients	34760.200000000004	12.7654058024238	1.2468164622065092	9.9	10.0	1.1166093597165077
 "Querying for variability in procedures between hospitals for effective care score"
 
 SELECT effective_care_transformed.measure_name, sum(score) as aggregate, avg(score) as average, 
@@ -29,16 +35,16 @@ stddev_pop(score) as stddev
 FROM effective_care_transformed, measures_transformed
 WHERE effective_care_transformed.measure_id = measures_transformed.measure_id
 GROUP by effective_care_transformed.measure_name
-SORT BY aggregate
+SORT BY aggregate DESC
 LIMIT 10
 effective_care_transformed.measure_name	aggregate	average	variance	maxscore	minscore	stddev
-Fibrinolytic Therapy Received Within 30 Minutes Of Hospital Arrival	150.0	50.0	352.6666666666667	73	27	18.7794213613377
-Median Time to Fibrinolysis	1768.0	26.0	57.20588235294118	64	15	7.563457037158417
-Fibrinolytic Therapy Received Within 30 Minutes of ED Arrival	4777.0	70.25	325.74632352941165	92	100	18.048443797995763
-Left before being seen	5449.0	1.6996257018091079	2.9468931849164655	9	0	1.7166517366421372
-Home Management Plan of Care Document	8580.0	89.375	161.7760416666667	99	100	12.71912110433212
-Incidence of potentially preventable VTE	8810.0	6.347262247838617	65.0033282395833	9	0	8.062464154313078
-Systemic Corticosteroids for Inpatient Asthma	9667.0	99.65979381443299	1.6471463492400888	99	100	1.283411995128645
-Relievers for Inpatient Asthma	9698.0	99.97938144329896	0.020193431820597303	99	100	0.14210359538237344
-Percent of newborns whose deliveries were scheduled early (1-3 weeks early), when a scheduled delivery was not medically necessary	10666.0	4.232539682539683	48.41735386747294	9	0	6.958257962124783
-Median Time to ECG	17491.0	8.333015721772272	37.32454597926683	9	0	6.109381800089665
+ED1	954970.0	271.6069397042093	8617.740839212507	97	100	92.83178787038688
+OP 18	478128.0	142.76739325171692	1656.5529409803205	99	100	40.70077322337158
+Initial antibiotic selection for CAP in immunocompetent patient	374336.0	94.21998489806192	86.04221827311703	99	100	9.275894472939902
+Evaluation of LVS Function	365949.0	96.7862999206559	108.40606462202838	99	0	10.411823309201342
+Surgery Patients Who Received Appropriate Venous Thromboembolism Prophylaxis Within 24 Hours Prior to Surgery to 24 Hours After Surgery	347877.0	98.85677749360613	22.018134656657434	99	0	4.692348522505275
+ED2	344421.0	98.51859267734554	3864.6924460743544	99	0	62.1666505939829
+Immunization for influenza	343040.0	91.74645627173041	142.68029969125467	99	0	11.944885922069522
+Venous thromboembolism prophylaxis	314930.0	89.11431805319751	232.78828961700816	99	0	15.257401142298388
+Prophylactic Antibiotic Selection for Surgical Patients	284445.0	97.61324639670556	15.333263105383406	99	100	3.915771074179823
+Prophylactic Antibiotic Initiated Within One Hour Prior to Surgical Incision	282734.0	97.19284977655552	25.695019345256917	99	100	5.06902548279814

@@ -1,3 +1,10 @@
+Analysis:  
+1. We find that the average effective care scores and survey scores are negatively correlated. This is a bit surprising finding. Maybe the survey responses are filled by people who are not happy with the service. 
+2. The average readmission score and the survey scores are also negatively correlated.  
+3. There is no data for veterans hospital for patient surveys. So we have no correlation data for the veterans hospital. 
+
+
+
 use hospital_compare
 set hive.cli.print.header=true
 "Querying for correlation between average score and survey score

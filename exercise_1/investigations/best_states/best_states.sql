@@ -3,6 +3,7 @@ set hive.cli.print.header=true;
 !echo "Querying for top 10 states with best readmission score";
 SELECT state, aggscore, avgscore, varscore, maxscore, minscore, stddev  
 FROM hospital_score_readd 
+GROUP BY state, aggscore, avgscore, varscore, maxscore, minscore, stddev
 SORT BY aggscore DESC
 LIMIT 10;
 

@@ -1,3 +1,14 @@
+Analysis:
+1. The aggregate score for effective care is higher than the aggregate score
+of readmission in most of the states. This may be due to a large number of
+patients in the effective care.   
+2. The veterans hospitals scored lower on both the effective care and on the
+readmission care. The difference was two times or higher.   
+
+
+
+The query results are below.
+
 use hospital_compare
 set hive.cli.print.header=true
 "Querying for top 10 states with best readmission score"
