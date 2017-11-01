@@ -1,6 +1,6 @@
-**Project for W205: Data Analysis of Hospital Compare DataSet**
-**By Manish Shah**
-**Date:10/31/2017**
+**Project for W205: Data Analysis of Hospital Compare DataSet**  
+**By Manish Shah**  
+**Date:10/31/2017**  
 
 # DataSet:
 
