@@ -20,3 +20,5 @@ hvbp_hcahps_05_28_2015.csv | Example survey response Data
 
 The analysis has been tested on AWS hosted EC2 instance with 100 GB of diskspace, 8 GB of Ram and 2 processors and using Linux 
 operating system. 
+
+# Run Instructions
